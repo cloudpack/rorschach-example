@@ -1,0 +1,16 @@
+{
+    "name": "cloudpack/rorschach-example",
+    "description": "rorschach test example",
+    "require": {
+        "cloudpack/rorschach": "^1.0",
+        "silex/silex": "^2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shinichi-takahashi",
+            "email": "shinichi@cloudpack.jp"
+        }
+    ],
+    "minimum-stability": "dev"
+}

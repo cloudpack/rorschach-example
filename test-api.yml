@@ -1,0 +1,54 @@
+base: http://localhost:{{ port }}
+pre-request:
+  -
+    url: /auth
+    method: POST
+    option:
+      json:
+        name: shinichi
+        password: p@ssw0rd
+    bind:
+      api-token: auth.x-api-token
+request:
+  -
+    url: /items/1
+    method: GET
+    option:
+      headers:
+        x-api-token: {{ api-token }}
+    expect:
+      has:
+        - code
+        - name
+        - size
+      value:
+        code: MBA
+  -
+    url: /users
+    method: GET
+    option:
+      headers:
+        x-api-token: {{ api-token }}
+    expect:
+      code: 200
+      has:
+        - .id
+        - .name
+      type:
+        .id: integer
+        .name: string
+      value:
+        .id: 1
+        .name: Michel
+  -
+    url: /redirect
+    method: GET
+    option:
+      allow_redirects: false
+    expect:
+      code: 302
+  -
+    url: /redirect
+    method: GET
+    expect:
+      code: 200
